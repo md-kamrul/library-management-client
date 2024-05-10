@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import ErrorPage from './ErrorPage';
 import Roots from './Layouts/Roots';
-import Home from './Layouts/Home';
+import Home from './Layouts/compoments/Home';
 
 const router = createBrowserRouter([
   {
