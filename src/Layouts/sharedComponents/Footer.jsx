@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <footer className="footer footer-center p-10 text-white border border-t-[#FFD54F] bg-[#3F51B5]">
+        <footer className="footer footer-center p-10 text-white border-t bg-[#3F51B5]">
             <aside>
                 <img src="/src/assets/logo-white.png" alt="logo" />
                 <p className="font-bold">
