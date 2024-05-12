@@ -6,9 +6,8 @@ import { IoMdEyeOff } from "react-icons/io";
 import { useContext, useState } from "react";
 import Swal from 'sweetalert2'
 import { AuthContext } from "../../Provider/AuthProvider";
-import { getAuth, signInWithPopup } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, TwitterAuthProvider } from "firebase/auth";
 import app from "../../Firebase/firebase.config";
-import { GoogleAuthProvider, TwitterAuthProvider } from "firebase/auth/cordova";
 
 const Register = () => {
 
