@@ -16,7 +16,7 @@ const ErrorPage = () => {
                     Page Not Found.
                 </span>
                 <br />
-                <Link to="/" className="label-text-alt link link-hover text-[#d7a31a] font-bold underline"><span className="text-base">Go to Home</span></Link>
+                <Link to="/" className="label-text-alt link link-hover text-[#FFD54F] font-bold underline"><span className="text-base">Go to Home</span></Link>
             </h2>
 
             <Footer></Footer>
