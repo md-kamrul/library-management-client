@@ -50,7 +50,7 @@ const Profile = () => {
 
     return (
         <div className="text-[#212121]">
-            <h2 className="text-center text-2xl text-[#3F51B5] mb-10 mt-24 font-bold">User Profile</h2>
+            <h2 className="text-center text-4xl text-[#3F51B5] mb-10 mt-24 font-bold">User Profile</h2>
             <div className="py-24 w-[80%] mx-auto text-xl text-center">
 
                 <img className="w-[10%] mx-auto rounded-full mb-10" src={`${userInfo.user.photoURL}`} alt="" />
