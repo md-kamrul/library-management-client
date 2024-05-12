@@ -1,8 +1,8 @@
 const NumbersOfBooks = () => {
   return (
-    <div className="mb-24">
+    <div className="my-24">
 
-      <h2 className="text-4xl text-center text-[#3F51B5] font-bold">NSU Library Collections</h2>
+      <h2 className="text-4xl text-center text-[#3F51B5] font-bold md:w-[80%] mx-auto">NSU Library Collections</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-between gap-5 w-[80%] mx-auto mt-10 text-center">
         <div className="text-[#212121] font-semibold  mb-1 ">

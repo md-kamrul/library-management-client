@@ -1,4 +1,5 @@
 import Carousel from "./Carousel/Carousel";
+import Newsletter from "./Newsletter";
 import NumbersOfBooks from "./NumbersOfBooks";
 
 const Home = () => {
@@ -12,6 +13,10 @@ const Home = () => {
 
             <div>
                 <NumbersOfBooks></NumbersOfBooks>
+            </div>
+
+            <div>
+                <Newsletter></Newsletter>
             </div>
         </div>
     );
