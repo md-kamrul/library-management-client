@@ -9,7 +9,7 @@ const Navbar = () => {
         <li><NavLink to="/all_books">All Books</NavLink></li>
         <li><NavLink to="/add_books">Add Books</NavLink></li>
         <li><NavLink to="/borrowed_books"> Borrowed Books</NavLink></li>
-        {/* <li><Link>LogOut</Link></li> */}
+        <li><Link>LogOut</Link></li>
         <li><NavLink to="/login">LogIn</NavLink></li>
         <li><NavLink to="/profile">
             <CgProfile className="text-3xl" />
