@@ -6,9 +6,9 @@ const Navbar = () => {
 
     const navBar = <>
         <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/all_spot">All Books</NavLink></li>
-        <li><NavLink to="/add_list">Add Books</NavLink></li>
-        <li><NavLink to="/my_list"> Borrowed Books</NavLink></li>
+        <li><NavLink to="/all_books">All Books</NavLink></li>
+        <li><NavLink to="/add_books">Add Books</NavLink></li>
+        <li><NavLink to="/borrowed_books"> Borrowed Books</NavLink></li>
         {/* <li><Link>LogOut</Link></li> */}
         <li><NavLink to="/login">LogIn</NavLink></li>
         <li><NavLink to="/profile">
