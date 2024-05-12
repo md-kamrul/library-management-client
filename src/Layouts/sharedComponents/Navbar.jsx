@@ -1,20 +1,52 @@
 import { Link, NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 // import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
 
+    const { user, logOut } = useContext(AuthContext);
+    const handleSignOut = () => {
+        logOut()
+            .then()
+            .catch()
+    }
+
     const navBar = <>
         <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/all_books">All Books</NavLink></li>
-        <li><NavLink to="/add_books">Add Books</NavLink></li>
-        <li><NavLink to="/borrowed_books"> Borrowed Books</NavLink></li>
-        <li><Link>LogOut</Link></li>
-        <li><NavLink to="/login">LogIn</NavLink></li>
-        <li><NavLink to="/profile">
-            <CgProfile className="text-3xl" />
-        </NavLink></li>
-        <li><NavLink to="/register">Register</NavLink></li>
+        {
+            user ?
+                <li><NavLink to="/all_books">All Books</NavLink></li>
+                :
+                <></>
+        }
+        {
+            user ?
+                <li><NavLink to="/add_books">Add Books</NavLink></li>
+                :
+                <></>
+        }
+        {
+            user ?
+                <li><NavLink to="/borrowed_books"> Borrowed Books</NavLink></li>
+                :
+                <></>
+        }
+        {
+            user ?
+                <li><Link onClick={handleSignOut}>LogOut</Link></li>
+                :
+                <li><NavLink to="/login">LogIn</NavLink></li>
+        }
+        {
+            user ?
+                <li><NavLink to="/profile">
+                    <CgProfile className="text-3xl" />
+                </NavLink></li>
+                :
+                <li><NavLink to="/register">Register</NavLink></li>
+        }
     </>
 
     return (
