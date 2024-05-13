@@ -23,7 +23,7 @@ const AddBooks = () => {
         console.log(addList);
 
         // send data to the server
-        fetch("http://localhost:5000/addBook", {
+        fetch("https://library-management-server-pink.vercel.app/addBook", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

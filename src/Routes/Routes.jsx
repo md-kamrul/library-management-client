@@ -46,47 +46,47 @@ const router = createBrowserRouter([
             {
                 path: "/categories/Business",
                 element: <PrivateRoute><CategoriesBusiness></CategoriesBusiness></PrivateRoute>,
-                loader: () => fetch("http://localhost:5000/addBook")
+                loader: () => fetch("https://library-management-server-pink.vercel.app/addBook")
             },
             {
                 path: "/categories/Biography",
                 element: <PrivateRoute><CategoriesBiography></CategoriesBiography></PrivateRoute>,
-                loader: () => fetch("http://localhost:5000/addBook")
+                loader: () => fetch("https://library-management-server-pink.vercel.app/addBook")
             },
             {
                 path: "/categories/Comics",
                 element: <PrivateRoute><CategoriesComics></CategoriesComics></PrivateRoute>,
-                loader: () => fetch("http://localhost:5000/addBook")
+                loader: () => fetch("https://library-management-server-pink.vercel.app/addBook")
             },
             {
                 path: "/categories/Science_and_Math",
                 element: <PrivateRoute><CategoriesScience_and_Math></CategoriesScience_and_Math></PrivateRoute>,
-                loader: () => fetch("http://localhost:5000/addBook")
+                loader: () => fetch("https://library-management-server-pink.vercel.app/addBook")
             },
             {
                 path: "/categories/History",
                 element: <PrivateRoute><CategoriesHistory></CategoriesHistory></PrivateRoute>,
-                loader: () => fetch("http://localhost:5000/addBook")
+                loader: () => fetch("https://library-management-server-pink.vercel.app/addBook")
             },
             {
                 path: "/categories/Mystries",
                 element: <PrivateRoute><CategoriesMystries></CategoriesMystries></PrivateRoute>,
-                loader: () => fetch("http://localhost:5000/addBook")
+                loader: () => fetch("https://library-management-server-pink.vercel.app/addBook")
             },
             {
                 path: "/categories/Literature_and_Fiction",
                 element: <PrivateRoute><CategoriesLiterature_and_Fiction></CategoriesLiterature_and_Fiction></PrivateRoute>,
-                loader: () => fetch("http://localhost:5000/addBook")
+                loader: () => fetch("https://library-management-server-pink.vercel.app/addBook")
             },
             {
                 path: "/categories/Health_and_Fitness",
                 element: <PrivateRoute><CategoriesHealth_and_Fitness></CategoriesHealth_and_Fitness></PrivateRoute>,
-                loader: () => fetch("http://localhost:5000/addBook")
+                loader: () => fetch("https://library-management-server-pink.vercel.app/addBook")
             },
             {
                 path: "/all_books",
                 element: <PrivateRoute><AllBooks></AllBooks></PrivateRoute>,
-                loader: () => fetch("http://localhost:5000/addBook")
+                loader: () => fetch("https://library-management-server-pink.vercel.app/addBook")
             },
         ]
     },
