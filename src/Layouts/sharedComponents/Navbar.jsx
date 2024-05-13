@@ -63,7 +63,7 @@ const Navbar = () => {
                     </div>
                     <a className="btn btn-ghost text-xl bg-transparent hover:bg-transparent">
                         <Link to="/" className="flex gap-1 items-center">
-                            <img className="h-[50px]" src="/src/assets/logo.png" alt="logo" />
+                            <img className="h-[50px]" src="https://i.ibb.co/gm41H5Q/logo.png" alt="logo" />
                             NSU Library
                         </Link>
                     </a>
