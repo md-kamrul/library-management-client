@@ -18,9 +18,30 @@ const AddBooks = () => {
         const rating = form.rating.value;
         const book_content = form.book_content.value;
 
-        const addList = { email, image, book_name, author_name, category, short_description, rating, book_content};
+        const addList = { email, image, book_name, author_name, category, short_description, rating, book_content };
 
         console.log(addList);
+
+        // send data to the server
+        fetch("http://localhost:5000/addBook", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(addList)
+        })
+            .then(res => res.json())
+            .then(data => {
+
+
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: "Done!",
+                        text: `You successfully added a tourist spot...`,
+                        icon: "success"
+                    });
+                }
+            })
     }
 
     return (
@@ -71,7 +92,7 @@ const AddBooks = () => {
                             <label className="label">
                                 <span className="label-text text-[#212121]">Rating</span>
                             </label>
-                            <input type="number" placeholder="Rating" className="input input-bordered" name="rating" required />
+                            <input type="number" min="0" max="10" step="0.5" placeholder="Rating" className="input input-bordered" name="rating" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -81,7 +102,7 @@ const AddBooks = () => {
                         </div>
 
                         <div className="form-control mt-6">
-                        <button className="btn bg-[#3F51B5] border border-[#f8fbff] text-[#f8fbff] hover:text-[#3F51B5] hover:border-[#3F51B5] hover:bg-transparent">Add Book</button>
+                            <button className="btn bg-[#3F51B5] border border-[#f8fbff] text-[#f8fbff] hover:text-[#3F51B5] hover:border-[#3F51B5] hover:bg-transparent">Add Book</button>
                         </div>
                     </form>
 
