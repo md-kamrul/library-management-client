@@ -11,16 +11,14 @@ const AddBooks = () => {
 
         const email = form.email.value;
         const image = form.image.value;
-        const shortDescription = form.shortDescription.value;
-        const touristSpot = form.touristSpot.value;
-        const country = form.country.value;
-        const location = form.location.value;
-        const averageCost = form.averageCost.value;
-        const seasonality = form.seasonality.value;
-        const travelTime = form.travelTime.value;
-        const totalVisitorPerYear = form.totalVisitorPerYear.value;
+        const book_name = form.book_name.value;
+        const author_name = form.author_name.value;
+        const category = form.category.value;
+        const short_description = form.short_description.value;
+        const rating = form.rating.value;
+        const book_content = form.book_content.value;
 
-        const addList = { email, image, shortDescription, touristSpot, country, location, averageCost, seasonality, travelTime, totalVisitorPerYear };
+        const addList = { email, image, book_name, author_name, category, short_description, rating, book_content};
 
         console.log(addList);
     }
@@ -37,7 +35,7 @@ const AddBooks = () => {
                             <label className="label">
                                 <span className="label-text text-[#212121]">Enter Your Email Address</span>
                             </label>
-                            <input type="email" placeholder="Enter Your Email Address" className="input input-bordered" name="email" required />
+                            <input type="text" placeholder="Email Address" className="input input-bordered" name="email" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -47,55 +45,43 @@ const AddBooks = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text text-[#212121]">Tourist Spot</span>
+                                <span className="label-text text-[#212121]">Book Name</span>
                             </label>
-                            <input type="text" placeholder="Tourist Spot" className="input input-bordered" name="touristSpot" required />
+                            <input type="text" placeholder="Book Name" className="input input-bordered" name="book_name" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text text-[#212121]">Country</span>
+                                <span className="label-text text-[#212121]">Author Name</span>
                             </label>
-                            <input type="text" placeholder="Country" className="input input-bordered" name="country" required />
+                            <input type="text" placeholder="Author Name" className="input input-bordered" name="author_name" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text text-[#212121]">Location</span>
+                                <span className="label-text text-[#212121]">Category</span>
                             </label>
-                            <input type="text" placeholder="Location" className="input input-bordered" name="location" required />
+                            <input type="text" placeholder="Category (Like Novel, Thriller...)" className="input input-bordered" name="category" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-[#212121]">Short Description</span>
                             </label>
-                            <input type="text" placeholder="Short Description" className="input input-bordered" name="shortDescription" required />
+                            <input type="text" placeholder="Short description" className="input input-bordered" name="short_description" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text text-[#212121]">Average Cost</span>
+                                <span className="label-text text-[#212121]">Rating</span>
                             </label>
-                            <input type="number" placeholder="Average Cost" className="input input-bordered" name="averageCost" required />
+                            <input type="number" placeholder="Rating" className="input input-bordered" name="rating" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text text-[#212121]">Seasonality</span>
+                                <span className="label-text text-[#212121]">Anything about the book</span>
                             </label>
-                            <input type="text" placeholder="Seasonality (Example: Summer, Winter)" className="input input-bordered" name="seasonality" required />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text text-[#212121]">Travel Time</span>
-                            </label>
-                            <input type="number" placeholder="Travel Time (in days)" className="input input-bordered" name="travelTime" required />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text text-[#212121]">Total Visitor Per Year</span>
-                            </label>
-                            <input type="number" placeholder="Total Visitor Per Year" className="input input-bordered" name="totalVisitorPerYear" required />
+                            <input type="text" placeholder="Some contents/texts about the book" className="input input-bordered" name="book_content" required />
                         </div>
 
                         <div className="form-control mt-6">
-                            <button className="btn bg-[#f8fbff] border border-[#f8fbff] text-[#000e25] hover:text-[#212121] hover:border-[#f8fbff] hover:bg-transparent">Add Tourist List</button>
+                        <button className="btn bg-[#3F51B5] border border-[#f8fbff] text-[#f8fbff] hover:text-[#3F51B5] hover:border-[#3F51B5] hover:bg-transparent">Add Book</button>
                         </div>
                     </form>
 
