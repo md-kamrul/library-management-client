@@ -4,6 +4,9 @@ import Newsletter from "./Newsletter";
 import NumbersOfBooks from "./NumbersOfBooks";
 
 const Home = () => {
+
+    document.title = "NSU Library"
+
     return (
         <div className="text-[#212121]">
             <div className="w-[80%] mx-auto mt-16 h-screen">

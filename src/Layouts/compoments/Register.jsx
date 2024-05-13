@@ -150,7 +150,7 @@ const Register = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    document.title = "TourLand - Register"
+    document.title = "NSU Library - Register"
 
     return (
         <div>
