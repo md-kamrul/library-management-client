@@ -7,6 +7,14 @@ import Home from "../Layouts/compoments/Home";
 import Login from "../Layouts/compoments/Login";
 import Register from "../Layouts/compoments/Register";
 import PrivateRoute from "./PrivateRoute";
+import CategoriesBusiness from "../Layouts/compoments/BooksListAccordingToCategory/CategoriesBusiness"
+import CategoriesBiography from "../Layouts/compoments/BooksListAccordingToCategory/CategoriesBiography"
+import CategoriesComics from "../Layouts/compoments/BooksListAccordingToCategory/CategoriesComics";
+import CategoriesScience_and_Math from "../Layouts/compoments/BooksListAccordingToCategory/CategoriesScience_and_Math";
+import CategoriesHistory from "../Layouts/compoments/BooksListAccordingToCategory/CategoriesHistory";
+import CategoriesMystries from "../Layouts/compoments/BooksListAccordingToCategory/CategoriesMystries";
+import CategoriesLiterature_and_Fiction from "../Layouts/compoments/BooksListAccordingToCategory/CategoriesLiterature_and_Fiction";
+import CategoriesHealth_and_Fitness from "../Layouts/compoments/BooksListAccordingToCategory/CategoriesHealth_and_Fitness";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +41,47 @@ const router = createBrowserRouter([
             {
                 path: "/add_books",
                 element: <PrivateRoute><AddBooks></AddBooks></PrivateRoute>
-            }
+            },
+            {
+                path: "/categories/Business",
+                element: <PrivateRoute><CategoriesBusiness></CategoriesBusiness></PrivateRoute>,
+                loader: () => fetch("http://localhost:5000/addBook")
+            },
+            {
+                path: "/categories/Biography",
+                element: <PrivateRoute><CategoriesBiography></CategoriesBiography></PrivateRoute>,
+                loader: () => fetch("http://localhost:5000/addBook")
+            },
+            {
+                path: "/categories/Comics",
+                element: <PrivateRoute><CategoriesComics></CategoriesComics></PrivateRoute>,
+                loader: () => fetch("http://localhost:5000/addBook")
+            },
+            {
+                path: "/categories/Science_and_Math",
+                element: <PrivateRoute><CategoriesScience_and_Math></CategoriesScience_and_Math></PrivateRoute>,
+                loader: () => fetch("http://localhost:5000/addBook")
+            },
+            {
+                path: "/categories/History",
+                element: <PrivateRoute><CategoriesHistory></CategoriesHistory></PrivateRoute>,
+                loader: () => fetch("http://localhost:5000/addBook")
+            },
+            {
+                path: "/categories/Mystries",
+                element: <PrivateRoute><CategoriesMystries></CategoriesMystries></PrivateRoute>,
+                loader: () => fetch("http://localhost:5000/addBook")
+            },
+            {
+                path: "/categories/Literature_and_Fiction",
+                element: <PrivateRoute><CategoriesLiterature_and_Fiction></CategoriesLiterature_and_Fiction></PrivateRoute>,
+                loader: () => fetch("http://localhost:5000/addBook")
+            },
+            {
+                path: "/categories/Health_and_Fitness",
+                element: <PrivateRoute><CategoriesHealth_and_Fitness></CategoriesHealth_and_Fitness></PrivateRoute>,
+                loader: () => fetch("http://localhost:5000/addBook")
+            },
         ]
     },
 ]);
