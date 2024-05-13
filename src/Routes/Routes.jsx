@@ -15,6 +15,7 @@ import CategoriesHistory from "../Layouts/compoments/BooksListAccordingToCategor
 import CategoriesMystries from "../Layouts/compoments/BooksListAccordingToCategory/CategoriesMystries";
 import CategoriesLiterature_and_Fiction from "../Layouts/compoments/BooksListAccordingToCategory/CategoriesLiterature_and_Fiction";
 import CategoriesHealth_and_Fitness from "../Layouts/compoments/BooksListAccordingToCategory/CategoriesHealth_and_Fitness";
+import AllBooks from "../Layouts/compoments/AllBooks";
 
 const router = createBrowserRouter([
     {
@@ -80,6 +81,11 @@ const router = createBrowserRouter([
             {
                 path: "/categories/Health_and_Fitness",
                 element: <PrivateRoute><CategoriesHealth_and_Fitness></CategoriesHealth_and_Fitness></PrivateRoute>,
+                loader: () => fetch("http://localhost:5000/addBook")
+            },
+            {
+                path: "/all_books",
+                element: <PrivateRoute><AllBooks></AllBooks></PrivateRoute>,
                 loader: () => fetch("http://localhost:5000/addBook")
             },
         ]
