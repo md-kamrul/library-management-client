@@ -1,48 +1,55 @@
-import { AiFillDollarCircle } from "react-icons/ai";
-import { FaLocationDot } from "react-icons/fa6";
+import { FaEdit, FaStar } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { FaPlusSquare } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 
 const BookDetails = () => {
-    document.title = "TourLand - Tourist Spot Details";
+    document.title = "NSU Library - Book Details";
 
     const cardDetails = useLoaderData();
 
     return (
-        <div className="bg-[#000e25] text-[#f8fbff] pb-24">
+        <div className="pb-24">
 
-            <h2 className="text-center text-2xl text-[#d7a31a] mb-10 mt-24 font-bold">Tourist Spot Details</h2>
+            <h2 className="text-center font-bold text-4xl mt-20 mb-10 text-[#3F51B5]">Book Details</h2>
 
-            <div className="w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 p-10 border-2 border-[#4d95a7] rounded-lg">
+            <div className="w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 p-10">
                 <div>
-                    <img className="w-full" src={cardDetails.image} alt="" />
-                    <div className="text-2xl pt-3">{cardDetails.touristSpot}</div>
-                    <div className="text-2xl pt-3 flex gap-2 items-center">
-                        <FaLocationDot className="text-xl text-[#4d95a7]" />
-                        {cardDetails.location}
-                    </div>
-                    <div className="text-2xl pt-3 flex gap-2 items-center">
-                        <AiFillDollarCircle className="text-xl text-[#4d95a7]" />
-                        {cardDetails.averageCost}
-                    </div>
-                </div>
-                <div className="text-xl">
-                    <div className="mb-4">
-                        <div className="underline mb-2 text-2xl text-[#4d95a7]">Country</div>
-                        {cardDetails.country}
-                    </div>
-                    <div className="mb-4">
-                        <div className="underline mb-2 text-2xl text-[#4d95a7]">Short Description</div>
-                        {cardDetails.shortDescription}
-                    </div>
-                    <div className="mb-4">
-                        <div className="underline mb-2 text-2xl text-[#4d95a7]">Best Time for Visit</div>
-                        {cardDetails.seasonality}
-                    </div>
-                    <div className="mb-4">
-                        <div className="underline mb-2 text-2xl text-[#4d95a7]">Total Visitor Per Year</div>
-                        {cardDetails.totalVisitorPerYear}
+                    <img className="w-[80%] mx-auto" src={cardDetails.image} alt="" />
+                    <div className="flex my-5 w-[80%] mx-auto">
+                        <button
+                            className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><MdDelete className="text-lg" /></button>
+                        <button
+                            className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaEdit className="text-lg" /></button>
+                        <button
+                            className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaPlusSquare className="text-lg" /></button>
                     </div>
                 </div>
+                <div>
+                    <div className="text-2xl pt-3 font-bold">{cardDetails.book_name}</div>
+                    <div className="text-lg pt-3">
+                        By <span className="font-semibold italic">{cardDetails.author_name}</span>
+                    </div>
+                    <div className="flex gap-4 my-2">
+                        <div className="flex gap-2 font-semibold">
+                            <FaStar className="text-2xl text-[#FFD54F]" />
+                            {cardDetails.rating}
+                        </div>
+                        <div>
+                            <span className="text-[#FFD54F] font-semibold">Category: </span>
+                            <span className="font-semibold">{cardDetails.category}</span>
+                        </div>
+                    </div>
+                    <div className="mt-10">
+                        <span className="font-bold text-lg border-b-2 border-b-[#FFD54F]">Short Description:</span>
+                        <div>{cardDetails.short_description}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="w-[80%] mx-auto mt-10">
+                <span className="font-bold text-lg border-b-2 border-b-[#FFD54F]">Interesting Things About The Book:</span>
+                <div>{cardDetails.book_content}</div>
             </div>
 
         </div>
