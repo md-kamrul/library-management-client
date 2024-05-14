@@ -4,15 +4,21 @@ import { FaPlusSquare } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { MdAssignmentReturn } from "react-icons/md";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const BookDetails = () => {
     document.title = "NSU Library - Book Details";
     const [borrow, setBorrow] = useState(false);
 
     const cardDetails = useLoaderData();
+    // const { email, image, book_name, author_name, category, quantity, short_description, rating, book_content, _id } = cardDetails;
     const { _id } = cardDetails;
     const eligible = cardDetails.quantity;
+
+    const userInfo = useContext(AuthContext);
+    const borrowedUserEmail = userInfo.user.email;
+    const borrowedUserDisplayName = userInfo.user.displayName;
 
     const handleDelete = id => {
 
@@ -78,20 +84,49 @@ const BookDetails = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.modifiedCount) {
-                        Swal.fire({
-                            title: "Done!",
-                            text: `You successfully  a Book...`,
-                            icon: "success"
-                        });
+
+                        const borrowList = { borrowedUserEmail, borrowedUserDisplayName, _id };
+
+                        // send data to the server
+                        fetch("https://library-management-server-pink.vercel.app/borrowBook", {
+                            method: "POST",
+                            headers: {
+                                "content-type": "application/json"
+                            },
+                            body: JSON.stringify(borrowList)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+
+
+                                if (data.insertedId) {
+                                    // Swal.fire({
+                                    //     title: "Done!",
+                                    //     text: `You successfully added a Book...`,
+                                    //     icon: "success"
+                                    // });
+                                    Swal.fire({
+                                        title: "Done!",
+                                        text: `You successfully borrowed  a Book...`,
+                                        icon: "success"
+                                    });
+                                }
+                            })
+
+                        // Swal.fire({
+                        //     title: "Done!",
+                        //     text: `You successfully borrowed  a Book...`,
+                        //     icon: "success"
+                        // });
                     }
                 })
         }
 
         else {
             Swal.fire({
-                title: "Done!",
-                text: `You successfully borrowed a Book...`,
-                icon: "success"
+                title: "Error!",
+                text: `Something wrong....`,
+                icon: "error"
             });
         }
 
