@@ -2,11 +2,44 @@ import { FaEdit, FaStar } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { FaPlusSquare } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const BookDetails = () => {
     document.title = "NSU Library - Book Details";
 
     const cardDetails = useLoaderData();
+    const { _id } = cardDetails;
+
+    const handleDelete = id => {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // console.log(cardDetails._id);
+                fetch(`https://library-management-server-pink.vercel.app/addBook/${_id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "The card has been deleted. Please reload the page.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+
+    }
 
     return (
         <div className="pb-24">
@@ -17,7 +50,7 @@ const BookDetails = () => {
                 <div>
                     <img className="w-[80%] mx-auto" src={cardDetails.image} alt="" />
                     <div className="flex my-5 w-[80%] mx-auto">
-                        <button
+                        <button onClick={() => handleDelete(_id)}
                             className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><MdDelete className="text-lg" /></button>
                         <button
                             className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaEdit className="text-lg" /></button>
