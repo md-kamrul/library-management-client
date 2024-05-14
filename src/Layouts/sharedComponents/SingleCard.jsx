@@ -7,13 +7,20 @@ const SingleCard = ({ signle_card }) => {
 
     return (
         <div>
-            
+
             <div className="card bg-[#FFD54F] border border-[#FFD54F] bg-opacity-30">
                 <figure className="px-5 pt-5">
                     <img src={image} alt="image" className="rounded-xl" />
                 </figure>
                 <div className="card-body items-center text-center">
-                    <h2 className="card-title">{book_name}</h2>
+                    <h2 className="card-title">
+                        {
+                            book_name.length > 10 ?
+                                <p>{book_name.slice(0, 10)}...</p>
+                                :
+                                <p>{book_name}</p>
+                        }
+                    </h2>
                     <div className="flex items-center gap-2">
                         <p className="font-semibold italic">By {author_name}</p>
                     </div>
