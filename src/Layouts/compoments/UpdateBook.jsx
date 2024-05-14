@@ -17,20 +17,20 @@ const UpdateBook = () => {
         const book_name = form.book_name.value;
         const author_name = form.author_name.value;
         const category = document.getElementById('category').value;
-        const quantity = form.qantity.value;
+        const quantity = form.quantity.value;
         const short_description = form.short_description.value;
         const rating = form.rating.value;
         const book_content = form.book_content.value;
 
-        const addList = { email, image, book_name, author_name, category, qantity: quantity, short_description, rating, book_content };
+        const update = { email, image, book_name, author_name, category, quantity, short_description, rating, book_content };
 
         // update data to the server
-        fetch(`https://tourism-server-coral.vercel.app/addList/${_id}`, {
+        fetch(`https://library-management-server-pink.vercel.app/addBook/${bookDetails._id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify(updateInfo)
+            body: JSON.stringify(update)
         })
             .then(res => res.json())
             .then(data => {
@@ -94,9 +94,9 @@ const UpdateBook = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text text-[#212121]">Book Qunatity</span>
+                                <span className="label-text text-[#212121]">Book Quantity</span>
                             </label>
-                            <input type="number" placeholder="Book Qunatity" className="input input-bordered" name="quantity" defaultValue={bookDetails.quantity} required />
+                            <input type="number" placeholder="Book Quantity" className="input input-bordered" name="quantity" defaultValue={bookDetails.quantity} required />
                         </div>
                         <div className="form-control">
                             <label className="label">
