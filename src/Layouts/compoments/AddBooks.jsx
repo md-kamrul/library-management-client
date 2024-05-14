@@ -48,7 +48,7 @@ const AddBooks = () => {
             <div className="w-[80%] mx-auto">
 
                 <div className=" mt-10 py-24 text-[#212121]">
-                    <h2 className="text-center text-4xl text-[#3F51B5] mb-10 font-bold">Add Tourist List</h2>
+                    <h2 className="text-center text-4xl text-[#3F51B5] mb-10 font-bold">Add Books</h2>
 
                     <form onSubmit={handleAddList} className="card-body">
                         <div className="form-control">
