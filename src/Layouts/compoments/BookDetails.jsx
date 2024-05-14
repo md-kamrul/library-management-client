@@ -3,9 +3,12 @@ import { MdDelete } from "react-icons/md";
 import { FaPlusSquare } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import { MdAssignmentReturn } from "react-icons/md";
+import { useState } from "react";
 
 const BookDetails = () => {
     document.title = "NSU Library - Book Details";
+    const [borrow, setBorrow] = useState(false);
 
     const cardDetails = useLoaderData();
     const { _id } = cardDetails;
@@ -41,6 +44,14 @@ const BookDetails = () => {
 
     }
 
+    const handleBorrow = () => {
+        setBorrow(true);
+    }
+
+    const handleReturn = () => {
+        setBorrow(false);
+    }
+
     return (
         <div className="pb-24">
 
@@ -56,8 +67,14 @@ const BookDetails = () => {
                             <button
                                 className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaEdit className="text-lg" /></button>
                         </Link>
-                        <button
-                            className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaPlusSquare className="text-lg" /></button>
+                        {
+                            !borrow && <button onClick={handleBorrow}
+                                className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaPlusSquare className="text-lg" /></button>
+                        }
+                        {
+                            borrow && <button onClick={handleReturn}
+                                className="btn bg-[#ff4f4f] text-[#ffffff] border hover:border-[#ff4f4f] border-[#ff4f4f] hover:bg-opacity-50 hover:bg-[#ff4f4f] mx-auto"><MdAssignmentReturn className="text-xl" /></button>
+                        }
                     </div>
                 </div>
                 <div>
