@@ -13,7 +13,7 @@ const AddBooks = () => {
         const image = form.image.value;
         const book_name = form.book_name.value;
         const author_name = form.author_name.value;
-        const category = form.category.value;
+        const category = document.getElementById('category').value;
         const short_description = form.short_description.value;
         const rating = form.rating.value;
         const book_content = form.book_content.value;
@@ -80,7 +80,17 @@ const AddBooks = () => {
                             <label className="label">
                                 <span className="label-text text-[#212121]">Category</span>
                             </label>
-                            <input type="text" placeholder="Category (Like Novel, Thriller...)" className="input input-bordered" name="category" required />
+                            <select id='category' className="select select-bordered w-full max-w-xs">
+                                <option disabled selected>Choose Category</option>
+                                <option value="Business">Business</option>
+                                <option value="Biography">Biography</option>
+                                <option value="Comics">Comics</option>
+                                <option value="Health and Fitness">Health and Fitness</option>
+                                <option value="History">History</option>
+                                <option value="Literature and Fiction">Literature and Fiction</option>
+                                <option value="Mystries">Mystries</option>
+                                <option value="Science and Math">Science and Math</option>
+                            </select>
                         </div>
                         <div className="form-control">
                             <label className="label">
