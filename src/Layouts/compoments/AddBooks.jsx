@@ -14,12 +14,12 @@ const AddBooks = () => {
         const book_name = form.book_name.value;
         const author_name = form.author_name.value;
         const category = document.getElementById('category').value;
-        const qantity = form.qantity.value;
+        const quantity = form.qantity.value;
         const short_description = form.short_description.value;
         const rating = form.rating.value;
         const book_content = form.book_content.value;
 
-        const addList = { email, image, book_name, author_name, category, qantity, short_description, rating, book_content };
+        const addList = { email, image, book_name, author_name, category, qantity: quantity, short_description, rating, book_content };
 
         // send data to the server
         fetch("https://library-management-server-pink.vercel.app/addBook", {
