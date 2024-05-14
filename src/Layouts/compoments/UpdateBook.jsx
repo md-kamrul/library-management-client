@@ -14,16 +14,15 @@ const UpdateBook = () => {
         const form = e.target;
 
         const image = form.image.value;
-        const shortDescription = form.shortDescription.value;
-        const touristSpot = form.touristSpot.value;
-        const country = form.country.value;
-        const location = form.location.value;
-        const averageCost = form.averageCost.value;
-        const seasonality = form.seasonality.value;
-        const travelTime = form.travelTime.value;
-        const totalVisitorPerYear = form.totalVisitorPerYear.value;
+        const book_name = form.book_name.value;
+        const author_name = form.author_name.value;
+        const category = document.getElementById('category').value;
+        const qantity = form.qantity.value;
+        const short_description = form.short_description.value;
+        const rating = form.rating.value;
+        const book_content = form.book_content.value;
 
-        const updateInfo = { email, image, shortDescription, touristSpot, country, location, averageCost, seasonality, travelTime, totalVisitorPerYear };
+        const addList = { email, image, book_name, author_name, category, qantity, short_description, rating, book_content };
 
         // update data to the server
         fetch(`https://tourism-server-coral.vercel.app/addList/${_id}`, {
