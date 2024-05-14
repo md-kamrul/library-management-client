@@ -81,7 +81,7 @@ const UpdateBook = () => {
                                 <span className="label-text text-[#212121]">Category</span>
                             </label>
                             <select id='category' className="select select-bordered w-full max-w-xs">
-                                <option disabled selected>Choose Category({bookDetails.category})</option>
+                                <option disabled selected>{bookDetails.category}</option>
                                 <option value="Business">Business</option>
                                 <option value="Biography">Biography</option>
                                 <option value="Comics">Comics</option>
