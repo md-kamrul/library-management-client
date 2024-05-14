@@ -36,7 +36,7 @@ const SingleCard = ({ signle_card }) => {
                     </div>
                     <div className="card-actions">
 
-                        <Link to={`/addList/${_id}`}>
+                        <Link to={`/addBook/${_id}`}>
                             <button className="btn bg-[#3F51B5] border border-[#f8fbff] text-[#f8fbff] hover:text-[#3F51B5] hover:border-[#3F51B5] hover:bg-transparent">View Details</button>
                         </Link>
 
