@@ -14,13 +14,12 @@ const AddBooks = () => {
         const book_name = form.book_name.value;
         const author_name = form.author_name.value;
         const category = document.getElementById('category').value;
+        const qunatity = form.qunatity.value;
         const short_description = form.short_description.value;
         const rating = form.rating.value;
         const book_content = form.book_content.value;
 
-        const addList = { email, image, book_name, author_name, category, short_description, rating, book_content };
-
-        console.log(addList);
+        const addList = { email, image, book_name, author_name, category, qunatity, short_description, rating, book_content };
 
         // send data to the server
         fetch("https://library-management-server-pink.vercel.app/addBook", {
@@ -91,6 +90,12 @@ const AddBooks = () => {
                                 <option value="Mystries">Mystries</option>
                                 <option value="Science and Math">Science and Math</option>
                             </select>
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text text-[#212121]">Book Qunatity</span>
+                            </label>
+                            <input type="number" placeholder="Book Qunatity" className="input input-bordered" name="qunatity" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
