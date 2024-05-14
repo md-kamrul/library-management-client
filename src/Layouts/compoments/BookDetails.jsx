@@ -75,6 +75,7 @@ const BookDetails = () => {
                             <span className="font-semibold">{cardDetails.category}</span>
                         </div>
                     </div>
+                    <div>There are <span className="font-bold border-b-2 border-b-[#FFD54F]">{cardDetails.quantity}</span> to borrow.</div>
                     <div className="mt-10">
                         <span className="font-bold text-lg border-b-2 border-b-[#FFD54F]">Short Description:</span>
                         <div>{cardDetails.short_description}</div>
