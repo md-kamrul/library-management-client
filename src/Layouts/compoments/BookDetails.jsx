@@ -1,7 +1,7 @@
 import { FaEdit, FaStar } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { FaPlusSquare } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const BookDetails = () => {
@@ -52,8 +52,10 @@ const BookDetails = () => {
                     <div className="flex my-5 w-[80%] mx-auto">
                         <button onClick={() => handleDelete(_id)}
                             className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><MdDelete className="text-lg" /></button>
-                        <button
-                            className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaEdit className="text-lg" /></button>
+                        <Link to={`/update/${_id}`}>
+                            <button
+                                className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaEdit className="text-lg" /></button>
+                        </Link>
                         <button
                             className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaPlusSquare className="text-lg" /></button>
                     </div>
@@ -85,7 +87,7 @@ const BookDetails = () => {
                 <div>{cardDetails.book_content}</div>
             </div>
 
-        </div>
+        </div >
     );
 };
 
