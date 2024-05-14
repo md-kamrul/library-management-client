@@ -36,7 +36,7 @@ const AddBooks = () => {
                 if (data.insertedId) {
                     Swal.fire({
                         title: "Done!",
-                        text: `You successfully added a tourist spot...`,
+                        text: `You successfully added a Book...`,
                         icon: "success"
                     });
                 }

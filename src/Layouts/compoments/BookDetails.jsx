@@ -12,6 +12,7 @@ const BookDetails = () => {
 
     const cardDetails = useLoaderData();
     const { _id } = cardDetails;
+    const eligible = cardDetails.quantity;
 
     const handleDelete = id => {
 
@@ -44,12 +45,65 @@ const BookDetails = () => {
 
     }
 
-    const handleBorrow = () => {
-        setBorrow(true);
+    const handleBorrow = async () => {
+        if (cardDetails.quantity >= 1 && cardDetails.quantity <= eligible) {
+            const { value: date } = await Swal.fire({
+                title: "Select Returing Date",
+                input: "date",
+                didOpen: () => {
+                    const today = (new Date()).toISOString();
+                    Swal.getInput().min = today.split("T")[0];
+                }
+            });
+            if (date) {
+                Swal.fire("Departure date", date);
+            }
+            setBorrow(true);
+            cardDetails.quantity = cardDetails.quantity - 1;
+            console.log(cardDetails.quantity);
+
+            const update = `${cardDetails.quantity}`;
+            const updateInfo = { update };
+            console.log(updateInfo);
+
+
+            // update data to the server
+            fetch(`https://library-management-server-pink.vercel.app/addBook/${cardDetails._id}`, {
+                method: "PUT",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(updateInfo)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.modifiedCount) {
+                        Swal.fire({
+                            title: "Done!",
+                            text: `You successfully  a Book...`,
+                            icon: "success"
+                        });
+                    }
+                })
+        }
+
+        else {
+            Swal.fire({
+                title: "Done!",
+                text: `You successfully borrowed a Book...`,
+                icon: "success"
+            });
+        }
+
     }
 
+
     const handleReturn = () => {
-        setBorrow(false);
+        if (cardDetails.quantity >= 1 && cardDetails.quantity <= eligible) {
+            setBorrow(false);
+            cardDetails.quantity = cardDetails.quantity + 1;
+            console.log(cardDetails.quantity);
+        }
     }
 
     return (
@@ -107,6 +161,6 @@ const BookDetails = () => {
 
         </div >
     );
-};
+}
 
 export default BookDetails;

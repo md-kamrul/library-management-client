@@ -37,7 +37,7 @@ const UpdateBook = () => {
                 if (data.modifiedCount) {
                     Swal.fire({
                         title: "Done!",
-                        text: `You successfully added a tourist spot...`,
+                        text: `You successfully update a Book...`,
                         icon: "success"
                     });
                 }
