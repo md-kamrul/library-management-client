@@ -1,5 +1,3 @@
-import { AiFillDollarCircle } from "react-icons/ai";
-import { IoTimeSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 
