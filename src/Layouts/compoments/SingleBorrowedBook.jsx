@@ -6,7 +6,6 @@ const SingleBorrowedBook = ({ signle_book }) => {
     const { image, book_name, category, returnDate, borrowedDate } = signle_book;
 
     const cardDetails = useLoaderData();
-    const eligible = cardDetails.quantity;
 
     const handleReturn = async () => {
         Swal.fire({
@@ -19,7 +18,7 @@ const SingleBorrowedBook = ({ signle_book }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://library-management-server-pink.vercel.app/borrowBook/${cardDetails._id}`, {
+                fetch(`https://library-management-server-pink.vercel.app/borrowedBook/${cardDetails._id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
