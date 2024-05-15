@@ -1,11 +1,8 @@
 import { MdAssignmentReturn } from "react-icons/md";
-import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const SingleBorrowedBook = ({ signle_book }) => {
     const { image, book_name, category, returnDate, borrowedDate } = signle_book;
-
-    const cardDetails = useLoaderData();
 
     const handleReturn = async () => {
         Swal.fire({
@@ -18,7 +15,7 @@ const SingleBorrowedBook = ({ signle_book }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://library-management-server-pink.vercel.app/borrowedBook/${cardDetails._id}`, {
+                fetch(`https://library-management-server-pink.vercel.app/borrowBook/${signle_book._id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
