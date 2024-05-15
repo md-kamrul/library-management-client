@@ -1,8 +1,8 @@
 import { MdAssignmentReturn } from "react-icons/md";
 
 const SingleBorrowedBook = ({ signle_book }) => {
-    const { image, book_name, category } = signle_book;
-    console.log("numbers: ", image, book_name, category);
+    const { image, book_name, category, returnDate, borrowedDate } = signle_book;
+    console.log(returnDate, borrowedDate);
     return (
         <div>
             <div className="card bg-[#FFD54F] border border-[#FFD54F] bg-opacity-30">
@@ -18,9 +18,15 @@ const SingleBorrowedBook = ({ signle_book }) => {
                                 <p>{book_name}</p>
                         }
                     </h2>
-                    <div className="flex items-center gap-6">
+                    <div className="flex flex-col gap-4">
                         <div className="flex items-center gap-2">
                             <p><span className="text-[#3F51B5] font-bold">Category: </span>{category}</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <p><span className="text-[#3F51B5] font-bold">Borrowed Time: </span>{borrowedDate.split("T")[0]}</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <p><span className="text-[#3F51B5] font-bold">Return Time: </span>{returnDate}</p>
                         </div>
                     </div>
                     <div className="card-actions">
