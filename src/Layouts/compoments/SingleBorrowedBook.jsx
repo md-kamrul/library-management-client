@@ -1,13 +1,17 @@
 import { MdAssignmentReturn } from "react-icons/md";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const SingleBorrowedBook = ({ signle_book }) => {
     const { image, book_name, category, returnDate, borrowedDate } = signle_book;
 
+    const cardDetails = useLoaderData();
+
     const handleReturn = async () => {
+        cardDetails.quantity = cardDetails.quantity - 1;
         Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            text: "The book will be returned",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -22,8 +26,8 @@ const SingleBorrowedBook = ({ signle_book }) => {
                     .then(data => {
                         if (data.deletedCount > 0) {
                             Swal.fire({
-                                title: "Deleted!",
-                                text: "The card has been deleted. Please reload the page.",
+                                title: "Book Returned!",
+                                text: "The book has been returned",
                                 icon: "success"
                             });
                         }
