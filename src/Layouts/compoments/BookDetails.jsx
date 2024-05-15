@@ -3,15 +3,13 @@ import { MdDelete } from "react-icons/md";
 import { FaPlusSquare } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
-import { MdAssignmentReturn } from "react-icons/md";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const BookDetails = () => {
     document.title = "NSU Library - Book Details";
 
-    let varient = false
-    // const [borrow, setBorrow] = useState(varient ? true : false);
+    const [borrow, setBorrow] = useState(false);
 
     const cardDetails = useLoaderData();
     const eligible = cardDetails.quantity;
@@ -31,18 +29,8 @@ const BookDetails = () => {
                 set_borrowed_data(data)
             )
     }, [])
-    console.log(borrowed_data);
-    for (let i = 0; i < borrowed_data.length; i++) {
-        if (borrowed_data[i].borrowedUserEmail === userInfo.user.email && borrowed_data[i]._id == cardDetails._id) {
-            varient = true;
-            console.log("we got it", varient);
-        }
-        else {
-            varient = false;
-        }
-    }
 
-    const [borrow, setBorrow] = useState(varient ? true : false);
+
 
 
     const handleDelete = id => {
@@ -118,7 +106,7 @@ const BookDetails = () => {
                     .then(data => {
                         if (data.modifiedCount) {
 
-                            const borrowList = { borrowedUserEmail, borrowedUserDisplayName, _id, borrowedDate, returnDate };
+                            const borrowList = { borrowedUserEmail, borrowedUserDisplayName, _id, borrowedDate, returnDate, borrow };
 
                             // send data to the server
                             fetch("https://library-management-server-pink.vercel.app/borrowBook", {
@@ -157,14 +145,6 @@ const BookDetails = () => {
     }
 
 
-    const handleReturn = () => {
-        if (cardDetails.quantity >= 1 && cardDetails.quantity <= eligible) {
-            setBorrow(false);
-            cardDetails.quantity = cardDetails.quantity + 1;
-            console.log(cardDetails.quantity);
-        }
-    }
-
     return (
         <div className="pb-24">
 
@@ -180,13 +160,8 @@ const BookDetails = () => {
                             <button
                                 className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaEdit className="text-lg" /></button>
                         </Link>
-                        {
-                            !borrow ? <button onClick={handleBorrow}
-                                className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaPlusSquare className="text-lg" /></button>
-                                :
-                                <button onClick={handleReturn}
-                                    className="btn bg-[#ff4f4f] text-[#ffffff] border hover:border-[#ff4f4f] border-[#ff4f4f] hover:bg-opacity-50 hover:bg-[#ff4f4f] mx-auto"><MdAssignmentReturn className="text-xl" /></button>
-                        }
+                        <button onClick={handleBorrow}
+                            className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaPlusSquare className="text-lg" /></button>
                     </div>
                 </div>
                 <div>
