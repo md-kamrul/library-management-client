@@ -2,7 +2,7 @@ import { MdAssignmentReturn } from "react-icons/md";
 
 const SingleBorrowedBook = ({ signle_book }) => {
     const { image, book_name, category, returnDate, borrowedDate } = signle_book;
-    console.log(returnDate, borrowedDate);
+    
     return (
         <div>
             <div className="card bg-[#FFD54F] border border-[#FFD54F] bg-opacity-30">

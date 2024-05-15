@@ -32,7 +32,6 @@ const BorrowedBooks = () => {
 
         }
     }
-    console.log("main: ", set_single_borrowed_book);
 
     return (
         <div>
