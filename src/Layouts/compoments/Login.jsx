@@ -103,7 +103,7 @@ const LogIn = () => {
     }
     const [showPassword, setShowPassword] = useState(false);
 
-    document.title = "TourLand - LogIn"
+    document.title = "NSU Library - LogIn"
     return (
         <div>
 
