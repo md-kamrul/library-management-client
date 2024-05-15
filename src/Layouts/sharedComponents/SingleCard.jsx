@@ -15,8 +15,8 @@ const SingleCard = ({ signle_card }) => {
                 <div className="card-body items-center text-center">
                     <h2 className="card-title">
                         {
-                            book_name.length > 10 ?
-                                <p>{book_name.slice(0, 10)}...</p>
+                            book_name.length > 30 ?
+                                <p>{book_name.slice(0, 30)}...</p>
                                 :
                                 <p>{book_name}</p>
                         }

@@ -9,11 +9,12 @@ import { AuthContext } from "../../Provider/AuthProvider";
 
 const BookDetails = () => {
     document.title = "NSU Library - Book Details";
+
+    
+
     const [borrow, setBorrow] = useState(false);
 
     const cardDetails = useLoaderData();
-    // const { email, image, book_name, author_name, category, quantity, short_description, rating, book_content, _id } = cardDetails;
-    const { _id } = cardDetails;
     const eligible = cardDetails.quantity;
 
     const userInfo = useContext(AuthContext);
@@ -32,8 +33,7 @@ const BookDetails = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                // console.log(cardDetails._id);
-                fetch(`https://library-management-server-pink.vercel.app/addBook/${_id}`, {
+                fetch(`https://library-management-server-pink.vercel.app/addBook/${cardDetails._id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
@@ -63,13 +63,22 @@ const BookDetails = () => {
             });
             if (date) {
                 Swal.fire("Departure date", date);
-            }
-            setBorrow(true);
+
+                setBorrow(true);
             cardDetails.quantity = cardDetails.quantity - 1;
             console.log(cardDetails.quantity);
 
-            const update = `${cardDetails.quantity}`;
-            const updateInfo = { update };
+            const quantity = `${cardDetails.quantity}`;
+            const _id = `${cardDetails._id}`;
+            const email = `${cardDetails.email}`;
+            const image = `${cardDetails.image}`;
+            const book_name = `${cardDetails.book_name}`;
+            const author_name = `${cardDetails.author_name}`;
+            const category = `${cardDetails.category}`;
+            const short_description = `${cardDetails.short_description}`;
+            const rating = `${cardDetails.rating}`;
+            const book_content = `${cardDetails.book_content}`;
+            const updateInfo = { email, image, book_name, author_name, category, quantity, short_description, rating, book_content };
             console.log(updateInfo);
 
 
@@ -85,47 +94,38 @@ const BookDetails = () => {
                 .then(data => {
                     if (data.modifiedCount) {
 
-                        const borrowList = { borrowedUserEmail, borrowedUserDisplayName, _id };
+                                const borrowList = { borrowedUserEmail, borrowedUserDisplayName, _id };
 
-                        // send data to the server
-                        fetch("https://library-management-server-pink.vercel.app/borrowBook", {
-                            method: "POST",
-                            headers: {
-                                "content-type": "application/json"
-                            },
-                            body: JSON.stringify(borrowList)
+                                // send data to the server
+                                fetch("https://library-management-server-pink.vercel.app/borrowBook", {
+                                    method: "POST",
+                                    headers: {
+                                        "content-type": "application/json"
+                                    },
+                                    body: JSON.stringify(borrowList)
+                                })
+                        .then(res => res.json())
+                        .then(data => {
+
+
+                            if (data.insertedId) {
+                                Swal.fire({
+                                    title: "Done!",
+                                    text: `You successfully borrowed  a Book...`,
+                                    icon: "success"
+                                });
+                            }
                         })
-                            .then(res => res.json())
-                            .then(data => {
 
-
-                                if (data.insertedId) {
-                                    // Swal.fire({
-                                    //     title: "Done!",
-                                    //     text: `You successfully added a Book...`,
-                                    //     icon: "success"
-                                    // });
-                                    Swal.fire({
-                                        title: "Done!",
-                                        text: `You successfully borrowed  a Book...`,
-                                        icon: "success"
-                                    });
-                                }
-                            })
-
-                        // Swal.fire({
-                        //     title: "Done!",
-                        //     text: `You successfully borrowed  a Book...`,
-                        //     icon: "success"
-                        // });
                     }
                 })
+            }
         }
 
         else {
             Swal.fire({
                 title: "Error!",
-                text: `Something wrong....`,
+                text: `No book is available....`,
                 icon: "error"
             });
         }
@@ -150,9 +150,9 @@ const BookDetails = () => {
                 <div>
                     <img className="w-[80%] mx-auto" src={cardDetails.image} alt="" />
                     <div className="flex my-5 w-[80%] mx-auto">
-                        <button onClick={() => handleDelete(_id)}
+                        <button onClick={() => handleDelete(cardDetails._id)}
                             className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><MdDelete className="text-lg" /></button>
-                        <Link to={`/update/${_id}`}>
+                        <Link to={`/update/${cardDetails._id}`}>
                             <button
                                 className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaEdit className="text-lg" /></button>
                         </Link>
