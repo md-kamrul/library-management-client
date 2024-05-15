@@ -4,15 +4,14 @@ import { FaPlusSquare } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { MdAssignmentReturn } from "react-icons/md";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const BookDetails = () => {
     document.title = "NSU Library - Book Details";
 
-    
-
-    const [borrow, setBorrow] = useState(false);
+    let varient = false
+    // const [borrow, setBorrow] = useState(varient ? true : false);
 
     const cardDetails = useLoaderData();
     const eligible = cardDetails.quantity;
@@ -20,6 +19,30 @@ const BookDetails = () => {
     const userInfo = useContext(AuthContext);
     const borrowedUserEmail = userInfo.user.email;
     const borrowedUserDisplayName = userInfo.user.displayName;
+
+
+    const [borrowed_data, set_borrowed_data] = useState([]);
+    const borrowCollectionURL = `https://library-management-server-pink.vercel.app/borrowBook`;
+    useEffect(() => {
+        fetch(borrowCollectionURL)
+            .then(res => res.json())
+            .then(data =>
+                set_borrowed_data(data)
+            )
+    }, [])
+    console.log(borrowed_data);
+    for (let i = 0; i < borrowed_data.length; i++) {
+        if (borrowed_data[i].borrowedUserEmail === userInfo.user.email && borrowed_data[i]._id == cardDetails._id) {
+            varient = true;
+            console.log("we got it", varient);
+        }
+        else {
+            varient = false;
+        }
+    }
+
+    const [borrow, setBorrow] = useState(varient ? true : false);
+
 
     const handleDelete = id => {
 
@@ -65,60 +88,60 @@ const BookDetails = () => {
                 Swal.fire("Departure date", date);
 
                 setBorrow(true);
-            cardDetails.quantity = cardDetails.quantity - 1;
-            console.log(cardDetails.quantity);
+                cardDetails.quantity = cardDetails.quantity - 1;
+                console.log(cardDetails.quantity);
 
-            const quantity = `${cardDetails.quantity}`;
-            const _id = `${cardDetails._id}`;
-            const email = `${cardDetails.email}`;
-            const image = `${cardDetails.image}`;
-            const book_name = `${cardDetails.book_name}`;
-            const author_name = `${cardDetails.author_name}`;
-            const category = `${cardDetails.category}`;
-            const short_description = `${cardDetails.short_description}`;
-            const rating = `${cardDetails.rating}`;
-            const book_content = `${cardDetails.book_content}`;
-            const updateInfo = { email, image, book_name, author_name, category, quantity, short_description, rating, book_content };
-            console.log(updateInfo);
-
-
-            // update data to the server
-            fetch(`https://library-management-server-pink.vercel.app/addBook/${cardDetails._id}`, {
-                method: "PUT",
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify(updateInfo)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.modifiedCount) {
-
-                                const borrowList = { borrowedUserEmail, borrowedUserDisplayName, _id };
-
-                                // send data to the server
-                                fetch("https://library-management-server-pink.vercel.app/borrowBook", {
-                                    method: "POST",
-                                    headers: {
-                                        "content-type": "application/json"
-                                    },
-                                    body: JSON.stringify(borrowList)
-                                })
-                        .then(res => res.json())
-                        .then(data => {
+                const quantity = `${cardDetails.quantity}`;
+                const _id = `${cardDetails._id}`;
+                const email = `${cardDetails.email}`;
+                const image = `${cardDetails.image}`;
+                const book_name = `${cardDetails.book_name}`;
+                const author_name = `${cardDetails.author_name}`;
+                const category = `${cardDetails.category}`;
+                const short_description = `${cardDetails.short_description}`;
+                const rating = `${cardDetails.rating}`;
+                const book_content = `${cardDetails.book_content}`;
+                const updateInfo = { email, image, book_name, author_name, category, quantity, short_description, rating, book_content };
+                console.log(updateInfo);
 
 
-                            if (data.insertedId) {
-                                Swal.fire({
-                                    title: "Done!",
-                                    text: `You successfully borrowed  a Book...`,
-                                    icon: "success"
-                                });
-                            }
-                        })
-
-                    }
+                // update data to the server
+                fetch(`https://library-management-server-pink.vercel.app/addBook/${cardDetails._id}`, {
+                    method: "PUT",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(updateInfo)
                 })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.modifiedCount) {
+
+                            const borrowList = { borrowedUserEmail, borrowedUserDisplayName, _id };
+
+                            // send data to the server
+                            fetch("https://library-management-server-pink.vercel.app/borrowBook", {
+                                method: "POST",
+                                headers: {
+                                    "content-type": "application/json"
+                                },
+                                body: JSON.stringify(borrowList)
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+
+
+                                    if (data.insertedId) {
+                                        Swal.fire({
+                                            title: "Done!",
+                                            text: `You successfully borrowed  a Book...`,
+                                            icon: "success"
+                                        });
+                                    }
+                                })
+
+                        }
+                    })
             }
         }
 
@@ -157,11 +180,10 @@ const BookDetails = () => {
                                 className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaEdit className="text-lg" /></button>
                         </Link>
                         {
-                            !borrow && <button onClick={handleBorrow}
+                            !borrow? <button onClick={handleBorrow}
                                 className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaPlusSquare className="text-lg" /></button>
-                        }
-                        {
-                            borrow && <button onClick={handleReturn}
+                        :
+                            <button onClick={handleReturn}
                                 className="btn bg-[#ff4f4f] text-[#ffffff] border hover:border-[#ff4f4f] border-[#ff4f4f] hover:bg-opacity-50 hover:bg-[#ff4f4f] mx-auto"><MdAssignmentReturn className="text-xl" /></button>
                         }
                     </div>
