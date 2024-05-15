@@ -18,6 +18,7 @@ import CategoriesHealth_and_Fitness from "../Layouts/compoments/BooksListAccordi
 import AllBooks from "../Layouts/compoments/AllBooks";
 import BookDetails from "../Layouts/compoments/BookDetails";
 import UpdateBook from "../Layouts/compoments/UpdateBook";
+import BorrowedBooks from "../Layouts/compoments/BorrowedBooks";
 
 const router = createBrowserRouter([
     {
@@ -100,6 +101,11 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><UpdateBook></UpdateBook></PrivateRoute>,
                 loader: ({ params }) => fetch(`https://library-management-server-pink.vercel.app/addBook/${params.id}`)
             },
+            {
+                path: "/borrowed_books",
+                element: <PrivateRoute><BorrowedBooks></BorrowedBooks></PrivateRoute>,
+                loader: () => fetch("https://library-management-server-pink.vercel.app/addBook")
+            }
         ]
     },
 ]);

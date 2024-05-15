@@ -19,6 +19,7 @@ const BookDetails = () => {
     const userInfo = useContext(AuthContext);
     const borrowedUserEmail = userInfo.user.email;
     const borrowedUserDisplayName = userInfo.user.displayName;
+    const borrowedDate = new Date();
 
 
     const [borrowed_data, set_borrowed_data] = useState([]);
@@ -85,7 +86,7 @@ const BookDetails = () => {
                 }
             });
             if (date) {
-                Swal.fire("Departure date", date);
+                const returnDate = date;
 
                 setBorrow(true);
                 cardDetails.quantity = cardDetails.quantity - 1;
@@ -117,7 +118,7 @@ const BookDetails = () => {
                     .then(data => {
                         if (data.modifiedCount) {
 
-                            const borrowList = { borrowedUserEmail, borrowedUserDisplayName, _id };
+                            const borrowList = { borrowedUserEmail, borrowedUserDisplayName, _id, borrowedDate, returnDate };
 
                             // send data to the server
                             fetch("https://library-management-server-pink.vercel.app/borrowBook", {
@@ -180,11 +181,11 @@ const BookDetails = () => {
                                 className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaEdit className="text-lg" /></button>
                         </Link>
                         {
-                            !borrow? <button onClick={handleBorrow}
+                            !borrow ? <button onClick={handleBorrow}
                                 className="btn bg-[#3F51B5] text-[#FFD54F] border hover:border-[#3F51B5] border-[#3F51B5] hover:bg-opacity-50 hover:bg-[#3F51B5] hover:text-[#3F51B5] mx-auto"><FaPlusSquare className="text-lg" /></button>
-                        :
-                            <button onClick={handleReturn}
-                                className="btn bg-[#ff4f4f] text-[#ffffff] border hover:border-[#ff4f4f] border-[#ff4f4f] hover:bg-opacity-50 hover:bg-[#ff4f4f] mx-auto"><MdAssignmentReturn className="text-xl" /></button>
+                                :
+                                <button onClick={handleReturn}
+                                    className="btn bg-[#ff4f4f] text-[#ffffff] border hover:border-[#ff4f4f] border-[#ff4f4f] hover:bg-opacity-50 hover:bg-[#ff4f4f] mx-auto"><MdAssignmentReturn className="text-xl" /></button>
                         }
                     </div>
                 </div>
