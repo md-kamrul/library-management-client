@@ -9,7 +9,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 const BookDetails = () => {
     document.title = "NSU Library - Book Details";
 
-    const [borrow, setBorrow] = useState(false);
+    let borrow = false;
 
     const cardDetails = useLoaderData();
     const eligible = cardDetails.quantity;
@@ -75,9 +75,8 @@ const BookDetails = () => {
             if (date) {
                 const returnDate = date;
 
-                setBorrow(true);
+                borrow = true;
                 cardDetails.quantity = cardDetails.quantity - 1;
-                console.log(cardDetails.quantity);
 
                 const quantity = `${cardDetails.quantity}`;
                 const _id = `${cardDetails._id}`;
@@ -90,7 +89,6 @@ const BookDetails = () => {
                 const rating = `${cardDetails.rating}`;
                 const book_content = `${cardDetails.book_content}`;
                 const updateInfo = { email, image, book_name, author_name, category, quantity, short_description, rating, book_content };
-                console.log(updateInfo);
 
 
                 // update data to the server
