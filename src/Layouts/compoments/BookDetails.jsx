@@ -16,7 +16,6 @@ const BookDetails = () => {
 
     const userInfo = useContext(AuthContext);
     const borrowedUserEmail = userInfo.user.email;
-    const borrowedUserDisplayName = userInfo.user.displayName;
     const borrowedDate = new Date();
 
 
@@ -106,7 +105,7 @@ const BookDetails = () => {
                     .then(data => {
                         if (data.modifiedCount) {
 
-                            const borrowList = { borrowedUserEmail, borrowedUserDisplayName, _id, borrowedDate, returnDate, borrow };
+                            const borrowList = { borrowedUserEmail, _id, borrowedDate, returnDate, borrow };
 
                             // send data to the server
                             fetch("https://library-management-server-pink.vercel.app/borrowBook", {
